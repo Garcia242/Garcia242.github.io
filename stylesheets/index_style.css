@@ -1,7 +1,7 @@
 :root {
   /* Design tokens */
-  --primary-color: #333;
-  --accent-color: #0077cc;
+  --primary-color: #cbd5e1;
+  --accent-color:#3b82f6;
   --bg-light: #f9f9f9;
   --font-body: 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
   --font-heading: 'Open Sans', sans-serif;
