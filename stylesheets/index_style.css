@@ -86,7 +86,7 @@ body {
   font-family: var(--font-heading);
   font-size: clamp(1.8rem, 3.5vw, 2.25rem);
   margin: var(--spacing-md) 0 var(--spacing-sm);
-  color: #222;
+  color: #fcf9f9;
 }
 
 /* ================= Home Text ================= */
