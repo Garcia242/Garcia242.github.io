@@ -1,0 +1,439 @@
+:root {
+  /* Design tokens */
+  --primary-color: #333;
+  --accent-color: #0077cc;
+  --bg-light: #f9f9f9;
+  --font-body: 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  --font-heading: 'Open Sans', sans-serif;
+  --radius: 8px;
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+}
+
+/* ================= Global Reset ================= */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-body); }
+body {
+  background-color: #fff;
+  color: #252424;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0; /* Removed padding so header spans edge-to-edge */
+}
+
+/* Optional shared container for page content */
+.container { max-width: 900px; margin: 0 auto; padding: 0 var(--spacing-sm); }
+
+/* ================= Slick Header (optional pill style) ================= */
+.site-header {
+  background: linear-gradient(90deg, #4a148c, #0077cc);
+  padding: 10px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s ease;
+}
+.brand:hover { opacity: 0.85; }
+.site-nav .nav-pill {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 18px);
+  padding: 8px 12px;
+  margin: 0;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px);
+}
+.site-nav .nav-pill a {
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+}
+.site-nav .nav-pill a:hover { background: rgba(255,255,255,0.22); transform: translateY(-1px); }
+.site-nav .nav-pill a:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.site-nav .nav-pill a.active {
+  background: #fff;
+  color: #4a148c;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12) inset, 0 3px 10px rgba(0,0,0,0.12);
+}
+
+/* ===== Mobile header fixes (match CV) ===== */
+@media (max-width: 768px){
+  .header-inner{
+    flex-direction: column;
+    gap: 10px;
+  }
+  .site-nav .nav-pill{
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 6px 10px;
+  }
+  .site-nav .nav-pill a{
+    padding: 8px 12px;
+  }
+}
+
+/* Safety: prevent accidental horizontal scroll from any element */
+html, body { overflow-x: hidden; }
+
+
+/* ================= Legacy Header (if not using pill style) ================= */
+header {
+  background-color: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-md);
+}
+header h1 {
+  font-family: var(--font-heading);
+  font-size: 2em;
+  margin-top: var(--spacing-xs);
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  position: relative;
+  padding: var(--spacing-xs) 0;
+}
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 2px;
+  background-color: #fff;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+nav ul li a:hover::after,
+nav ul li a:focus::after { transform: scaleX(1); }
+
+/* ================= Banner ================= */
+section.banner {
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+section.banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  opacity: 0;
+  animation: fade-in 2s forwards;
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* ================= Intro Text (card) ================= */
+#introText {
+  background-color: var(--bg-light);
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 0 auto 30px;
+  padding: 20px;
+  text-align: justify;
+}
+#introText p {
+  font-size: 1.125em;
+  margin-bottom: var(--spacing-md);
+}
+#introText a {
+  color: var(--accent-color);
+  text-decoration: none;
+  position: relative;
+}
+#introText a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 2px;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+#introText a:hover::after,
+#introText a:focus::after { transform: scaleX(1); }
+
+.intro-list {
+  list-style: disc;
+  padding-left: 1.4rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.intro-list li {
+  margin-bottom: 0.75rem;
+  text-align: justify;
+}
+
+.main-interests {
+  margin-top: var(--spacing-sm);
+  font-style: italic;
+  color: #444;
+}
+
+/* ================= Project Sections ================= */
+/* Center the page title */
+.page-title {
+  font-family: var(--font-heading);
+  text-align: center;
+  margin: var(--spacing-md) auto var(--spacing-sm);
+  max-width: 900px;          /* match your content width */
+  padding: 0 var(--spacing-sm);
+}
+
+/* optional: a neat underline */
+.page-title::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 3px;
+  background: var(--primary-color);
+  margin: var(--spacing-xs) auto 0;
+  border-radius: 2px;
+}
+
+
+
+#projectHeader {
+  padding: 0 var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+#projectHeader::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+#projectHeader h2 a {
+  font-family: var(--font-heading);
+  font-size: 1.5em;
+  color: var(--primary-color);
+  text-decoration: none;
+  position: relative;
+}
+#projectHeader h2 a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 100%; height: 2px;
+  background-color: var(--primary-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+#projectHeader h2 a:hover::after,
+#projectHeader h2 a:focus::after { transform: scaleX(1); }
+.project-image {
+  float: left;
+  width: 250px;
+  height: auto;
+  margin: 0 var(--spacing-md) var(--spacing-md) 0;
+  border-radius: var(--radius);
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+}
+#projectHeader p { margin-bottom: var(--spacing-md); }
+
+.project-date {
+  font-size: 0.85rem;
+  color: #333;
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-separator {
+  width: 200px;              /* controls the length */
+  height: 3px;              /* thickness */
+  background-color: #222;   /* color of the line */
+  margin: 30px auto;        /* centers and adds spacing */
+  border-radius: 1px;       /* smooth ends */
+  opacity: 0.8;             /* subtle look */
+}
+
+.projects-divider {
+  border: none; /* remove default browser style */
+  border-top: 3px dotted #444; /* thicker & darker dotted line */
+  margin: var(--spacing-lg) auto;
+  width: 100%; /* spans the whole page */
+}
+
+/* ================= Footer ================= */
+footer {
+  margin-top: auto;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding: var(--spacing-sm) 0;
+}
+.social-links a {
+  color: #fff;
+  font-size: 1.5em;
+  margin: 0 var(--spacing-xs);
+  display: inline-block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.social-links a:hover,
+.social-links a:focus { transform: scale(1.1); opacity: 0.8; }
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+  .header-inner { flex-direction: column; gap: 10px; }
+  .site-nav .nav-pill { flex-wrap: wrap; justify-content: center; padding: 6px 10px; }
+  .site-nav .nav-pill a { padding: 8px 12px; }
+
+  .project-image {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto var(--spacing-md);
+  }
+}
+@media (max-width: 480px) {
+  header h1 { font-size: 1.75em; }
+  #introText p { font-size: 1em; }
+}
+
+/* ================= Reduced Motion ================= */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+body {
+  background: linear-gradient(to bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  background-attachment: fixed;
+}
+
+/* === Currently Working On Section === */
+#currentWork {
+  margin-top: var(--spacing-lg);
+  padding: 0 var(--spacing-sm);
+}
+
+#currentWork .page-title {
+  margin-bottom: var(--spacing-md);
+}
+
+.current-project {
+  margin-bottom: var(--spacing-lg);
+}
+
+.current-project h2 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.current-project p {
+  max-width: 900px;
+  line-height: 1.6;
+}
+
+/* --- Currently Working On: readable layout --- */
+#currentWork {
+  padding: 0 var(--spacing-sm);
+}
+
+.current-project {
+  /* constrain the whole entry and center it on the page */
+  max-width: 900px;                  /* or try 780px */
+  margin: 0 auto var(--spacing-lg);
+  text-align: center;                /* centers the heading + date only */
+}
+
+/* date line */
+.current-project .when {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: #5b5b5b;
+  text-transform: uppercase;         /* or: font-variant: all-small-caps; */
+  letter-spacing: .06em;
+}
+
+/* heading stays centered */
+.current-project h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  margin: 4px 0 var(--spacing-sm);
+}
+
+/* paragraphs are limited in width and left-aligned for readability */
+.current-project p {
+  max-width: 65ch;                   /* ~65 characters per line is comfy */
+  margin: 0 auto var(--spacing-xs);  /* center the block itself */
+  text-align: left;                  /* left-align the text */
+  line-height: 1.65;
+}
+
+/* optional: image inside current-project */
+.current-project .project-image {
+  display: block;
+  width: 100%;
+  max-width: 720px;                  /* keep images from getting too wide */
+  height: auto;
+  border-radius: var(--radius);
+  margin: 0 auto var(--spacing-sm);
+}
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;  /* thickness of the bar */
+  background: linear-gradient(90deg, #4a148c, #0077cc);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.15s ease-out;
+}
+
+/* ================= Fade in ================= */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px); /* slight slide up */
+  will-change: opacity, transform;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+

@@ -1,0 +1,160 @@
+:root{
+  --primary-color:#333;
+  --accent-color:#7a1fa2; /* purple vibe */
+  --bg-light:#f9f9f9;
+  --font-body:'Palatino Linotype','Book Antiqua',Georgia,serif;
+  --font-heading:'Open Sans',sans-serif;
+  --radius:12px;
+  --spacing-xs:8px;
+  --spacing-sm:16px;
+  --spacing-md:24px;
+  --spacing-lg:32px;
+}
+
+/* ========= Base + background ========= */
+*{margin:0;padding:0;box-sizing:border-box;font-family:var(--font-body)}
+body{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  line-height:1.6;color:#252424;
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255,255,255,.7) 0%, rgba(255,255,255,.0) 60%),
+    linear-gradient(135deg,#ffdee9 0%,#b5fffc 100%);
+}
+
+/* Optional content container */
+.container{max-width:1100px;margin:0 auto;padding:0 var(--spacing-sm)}
+
+/* ========= Slick pill header ========= */
+.site-header{
+  background:linear-gradient(90deg,#4a148c,#0077cc);
+  box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+.header-inner{
+  max-width:1200px;margin:0 auto;padding:12px 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{
+  color:#fff;text-decoration:none;font-family:var(--font-heading);
+  font-weight:700;font-size:1.25rem;letter-spacing:.3px;transition:opacity .2s;
+}
+.brand:hover{opacity:.85}
+.site-nav .nav-pill{
+  list-style:none;display:flex;align-items:center;gap:clamp(8px,2vw,18px);
+  padding:8px 12px;margin:0;border-radius:9999px;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(4px);
+}
+.site-nav .nav-pill a{
+  color:#fff;text-decoration:none;font-family:var(--font-heading);
+  font-weight:600;font-size:.95rem;padding:8px 14px;border-radius:9999px;
+  transition:background .25s,color .25s,transform .15s;
+}
+.site-nav .nav-pill a:hover{background:rgba(255,255,255,.22);transform:translateY(-1px)}
+.site-nav .nav-pill a.active{
+  background:#fff;color:#4a148c;
+  box-shadow:0 4px 10px rgba(0,0,0,.12) inset, 0 3px 10px rgba(0,0,0,.12);
+}
+
+/* ========= Page title ========= */
+.page-title{
+  font-family:var(--font-heading);
+  text-align:center;
+  font-size:clamp(1.6rem,3vw,2.5rem);
+  font-weight:700;
+  margin:var(--spacing-lg) auto var(--spacing-md);
+}
+.page-title::after{
+  content:'';display:block;width:120px;height:3px;background:#222;
+  margin:var(--spacing-xs) auto 0;border-radius:2px;
+}
+
+/* ========= Card ========= */
+.card{
+  background:var(--bg-light);
+  border:1px solid #ccc;
+  border-radius:var(--radius);
+  box-shadow:0 2px 5px rgba(0,0,0,.1);
+  padding:var(--spacing-md);
+}
+
+/* ========= Pretty CTA buttons ========= */
+.btn-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 18px;border-radius:9999px;text-decoration:none;
+  font-family:var(--font-heading);font-weight:700;letter-spacing:.2px;
+  color:#fff;background:linear-gradient(135deg,#7a1fa2,#4a148c);
+  box-shadow:0 6px 16px rgba(74,20,140,.25);
+  transition:transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn-cta i{font-size:1.05em}
+.btn-cta:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(74,20,140,.32);filter:brightness(1.03)}
+.btn-cta:active{transform:translateY(0)}
+.btn-cta:focus-visible{outline:3px solid rgba(122,31,162,.4);outline-offset:2px}
+
+/* outline variant (for secondary action) */
+.btn-outline{
+  background:#fff;color:#4a148c;
+  border:2px solid #4a148c;
+  box-shadow:none;
+}
+.btn-outline:hover{filter:none;transform:translateY(-1px);box-shadow:0 6px 16px rgba(74,20,140,.18)}
+.btn-outline i{color:#4a148c}
+
+/* ========= Nice one-liner CTA block (your “click here” line) ========= */
+section.main_text{text-align:center;margin-bottom:var(--spacing-md)}
+section.main_text p{margin:0}
+section.main_text .btn-cta{margin-top:8px}
+
+/* ========= Two-download row ========= */
+.cv-actions{max-width:900px;margin:0 auto var(--spacing-sm)}
+.download-row{
+  display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:center; /* centered looks best with two buttons */
+}
+
+/* ========= Project Description ========= */
+.project-description{
+  max-width:900px;margin:var(--spacing-md) auto var(--spacing-lg);
+}
+.project-description h2{
+  font-family:var(--font-heading);
+  font-size:1.4rem;margin-bottom:var(--spacing-sm);
+}
+.project-description .bullets{
+  margin-top:var(--spacing-sm);padding-left:1.1rem;
+}
+.project-description .bullets li{margin:6px 0}
+
+/* ========= Footer ========= */
+footer{
+  margin-top:auto;background:#333;color:#fff;text-align:center;padding:20px 0;
+}
+.social-links{display:flex;justify-content:center;gap:10px;padding-top:10px}
+.social-links a{color:#fff;position:relative;text-decoration:none}
+.social-links a::after{
+  content:'';position:absolute;left:0;bottom:-2px;width:100%;height:2px;
+  background:#fff;transform:scaleX(0);transition:transform .3s ease;
+}
+.social-links a:hover::after{transform:scaleX(1)}
+.fa{padding:10px;font-size:30px;margin:5px 10px}
+.fa:hover{opacity:.7}
+
+/* ========= Responsive ========= */
+@media (max-width:768px){
+  .header-inner{flex-direction:column;gap:10px}
+  .site-nav .nav-pill{flex-wrap:wrap;justify-content:center;padding:6px 10px}
+  .site-nav .nav-pill a{padding:8px 12px}
+  .download-row{justify-content:center}
+}
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;  /* thickness of the bar */
+  background: linear-gradient(90deg, #4a148c, #0077cc);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.15s ease-out;
+}
+
